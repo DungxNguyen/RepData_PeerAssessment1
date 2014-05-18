@@ -36,7 +36,7 @@ steps_by_date <- aggregate(steps ~ date, data = data, FUN = sum)
 Make histogram
 
 ```r
-hist(steps_by_date$steps)
+hist(steps_by_date$steps, main = "Histogram of Steps by Date", xlab = "Steps")
 ```
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
@@ -77,7 +77,8 @@ mean_steps_by_interval <- aggregate(steps ~ interval, data = data, FUN = mean)
 Make plot
 
 ```r
-plot(mean_steps_by_interval$interval, mean_steps_by_interval$steps, type = "l")
+plot(mean_steps_by_interval$interval, mean_steps_by_interval$steps, type = "l", 
+    main = "Steps by Inteval", xlab = "Interval", ylab = "Steps")
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
@@ -135,7 +136,8 @@ Make histogram of total steps by date
 ```r
 no_missing_steps_by_date <- aggregate(steps ~ date, data = no_missing_data, 
     FUN = sum)
-hist(no_missing_steps_by_date$steps)
+hist(no_missing_steps_by_date$steps, main = "Histogram of Steps by Date after imputing missing values", 
+    xlab = "Steps")
 ```
 
 ![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10.png) 
@@ -160,8 +162,9 @@ median(no_missing_steps_by_date$steps)
 ```
 
 
-Mean value doesn't change
-Median value changes
+Mean value doesn't change. 
+Median value changes. 
+Imputing missing values makes freq at bin 10000-15000 higher, the data is more concentrative at the middle range.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -190,7 +193,7 @@ Make plots
 ```r
 library(lattice)
 xyplot(steps ~ interval | weekday, data = steps_by_interval_weekday, type = "l", 
-    layout = c(1, 2))
+    layout = c(1, 2), main = "Steps by Interval (Weekend vs Weekday)")
 ```
 
 ![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
